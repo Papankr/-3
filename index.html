@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>ЛР3</title>
+	<script>
+		function page_onload() {
+			let body = document;
+			print_dom(body, 0);
+		}
+
+		function print_dom(element, tab) {
+			let len = element.children.length;
+			let res = document.getElementById("result");
+			if (len == 0)
+				return ;
+			for (let i = 0; i < len; i++) {
+				if (element.children[i].id != "result") {
+					console.log(element.children[i].tagName.toLowerCase() + " open");
+					print_whitespaces(tab);
+					res.innerHTML += "&lt" + element.children[i].tagName.toLowerCase() + "&gt";
+					if (element.children[i].children.length != 0)
+						res.innerHTML += "<br>";
+					print_dom(element.children[i], tab + 1);
+					if (element.children[i].children.length != 0)
+						print_whitespaces(tab);
+					res.innerHTML += "&lt/" + element.children[i].tagName.toLowerCase() + "&gt";
+					res.innerHTML += "<br>";
+					console.log(element.children[i].tagName.toLowerCase() + " close");
+				}
+			}
+		}
+
+		function print_whitespaces(len) {
+			let res = document.getElementById("result");
+			for (let i = 0; i < len; i++)
+				res.innerHTML += "&nbsp" + "&nbsp";
+		}
+	</script>
+</head>
+<body onload="page_onload()">
+	<div>
+		<div>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+		</div>
+		<div>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+			<h1>
+				<p></p>
+				<p></p>
+			</h1>
+		</div>
+	</div>
+	<div id="result">
+	</div>
+</body>
+</html>
